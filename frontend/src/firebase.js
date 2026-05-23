@@ -8,7 +8,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDcHlgik0HWpsRNBpjHKrjItedvXkDm-ls",
+  apiKey: "",
   authDomain: "my-byoc-copilot-fbefc.firebaseapp.com",
   projectId: "my-byoc-copilot-fbefc",
   storageBucket: "my-byoc-copilot-fbefc.firebasestorage.app",
