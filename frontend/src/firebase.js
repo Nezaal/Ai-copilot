@@ -1,26 +1,36 @@
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAnalytics } from "firebase/analytics";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-// PASTE YOUR CONFIG FROM FIREBASE CONSOLE HERE
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDcHlgik0HWpsRNBpjHKrjItedvXkDm-ls",
+  authDomain: "my-byoc-copilot-fbefc.firebaseapp.com",
+  projectId: "my-byoc-copilot-fbefc",
+  storageBucket: "my-byoc-copilot-fbefc.firebasestorage.app",
+  messagingSenderId: "804150913656",
+  appId: "1:804150913656:web:ad005702e5e9b247f71b8d",
+  measurementId: "G-X2F5G5XEPP"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const googleProvider = new GoogleAuthProvider();
+const analytics = getAnalytics(app);
+// Auth exports
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
-export const signInWithGoogle = async () => {
+const signInWithGoogle = async () => {
   try {
-    const result = await signInWithPopup(auth, googleProvider);
-    return result.user;
-  } catch (error) {
-    alert("Firebase Auth Error: " + error.message);
-    console.error(error);
+    await signInWithPopup(auth, provider);
+  } catch (err) {
+    console.error('Google sign-in failed', err);
+    throw err;
   }
 };
+
+export { auth, signInWithGoogle };
